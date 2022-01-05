@@ -13,8 +13,10 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class CreateRecordActivity extends AppCompatActivity {
 
-    int count = 2;
+    int count = 0;
+    AssignId assignId = new AssignId();
     EditText nameTxt,cnicTxt,ageTxt,semesterTxt,cgpaTxt;
+    Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,31 +32,32 @@ public class CreateRecordActivity extends AppCompatActivity {
 
 
     public void submitRecord(View view) {
-        String nameStr = nameTxt.getText().toString();
-        String cnicStr = cnicTxt.getText().toString();
-        String ageStr = ageTxt.getText().toString();
-        String semesterStr = semesterTxt.getText().toString();
-        String cgpaStr = cgpaTxt.getText().toString();
-        String id = "student" + count;
-        count++;
+        student.setId(assignId.getLastId() + 1);
+        student.setName(nameTxt.getText().toString());
+        student.setCnic(cnicTxt.getText().toString());
+        student.setAge(ageTxt.getText().toString());
+        student.setSemester(semesterTxt.getText().toString());
+        student.setGpa(cgpaTxt.getText().toString());
+        student.setObjectName("student" + String.valueOf(student.getId()));
 
-        if (nameStr.length() > 0 && cnicStr.length() > 0 &&
-                ageStr.length() > 0 && semesterStr.length() > 0 &&
-                cgpaStr.length() > 0)
+        if (student.getName().length() > 0 && student.getCnic().length() > 0 &&
+                student.getAge().length() > 0 && student.getSemester().length() > 0 &&
+                student.getGpa().length() > 0)
         {
             FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference myRef = database.getReference("records");
-            myRef.child(id).child("name").setValue(nameStr);
-            myRef.child(id).child("cnic").setValue(cnicStr);
-            myRef.child(id).child("age").setValue(ageStr);
-            myRef.child(id).child("semester").setValue(semesterStr);
-            myRef.child(id).child("cgpa").setValue(cgpaStr);
+            DatabaseReference myRef = database.getReference();
+            myRef.child(student.getObjectName()).child("id").setValue(student.getId());
+            myRef.child(student.getObjectName()).child("name").setValue(student.getName());
+            myRef.child(student.getObjectName()).child("cnic").setValue(student.getCnic());
+            myRef.child(student.getObjectName()).child("age").setValue(student.getAge());
+            myRef.child(student.getObjectName()).child("semester").setValue(student.getSemester());
+            myRef.child(student.getObjectName()).child("cgpa").setValue(student.getGpa());
+            finish();
         }
         else
         {
             Toast.makeText(this, "Please fill complete form", Toast.LENGTH_SHORT).show();
         }
 
-        finish();
     }
 }

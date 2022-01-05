@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     Button createBtn,searchBtn,updateBtn,deleteBtn;
     TextView heading;
 
-    int objectCount = 0;
+    AssignId assignId = new AssignId();
+    int objectCount = assignId.getObjectCount();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +38,6 @@ public class MainActivity extends AppCompatActivity {
         deleteBtn = findViewById(R.id.button4);
 
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference();
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot snap: snapshot.getChildren()) {
-                    Log.d("wasti", String.valueOf(snap.getChildrenCount()));
-                    Log.d("wasti", String.valueOf(snap.child("student1").child("name").getValue()));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
 
         createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DeleteActivity.class);
                 startActivity(intent);
+                //objectCount = assignId.getObjectCount();
+                //Toast.makeText(getApplicationContext(), String.valueOf(objectCount) + assignId.getLastStudent() + assignId.lastId, Toast.LENGTH_LONG).show();
+
             }
         });
 

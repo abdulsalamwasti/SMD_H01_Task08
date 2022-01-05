@@ -10,35 +10,32 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AssignId {
 
     static private FirebaseDatabase database = FirebaseDatabase.getInstance("https://hometask08-b2779-default-rtdb.firebaseio.com/");
     static private DatabaseReference myRef = database.getReference();
     int objectCount;
+    int lastId;
+    String lastStudent;
+
 
     public AssignId() {
-        myRef.addChildEventListener(new ChildEventListener() {
+        updateCount();
+    }
+
+    private void updateCount()
+    {
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                DataSnapshot snapshot1 = (DataSnapshot) snapshot.getChildren();
-                objectCount = (int) snapshot1.getChildrenCount();
-                Log.d("wasti", String.valueOf(objectCount));
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                objectCount = (int) snapshot.getChildrenCount();
+                for (DataSnapshot snap: snapshot.getChildren()) {
+                    lastId = Integer.parseInt(String.valueOf(snap.child("id").getValue()));
+                    //Log.d("wasti", String.valueOf(snap.child("id").getValue()));
+                    lastStudent = String.valueOf(snap.getKey());
+                }
             }
 
             @Override
@@ -49,6 +46,18 @@ public class AssignId {
     }
 
     public int getObjectCount() {
+        updateCount();
+        //Log.d("wasti", String.valueOf(objectCount));
         return objectCount;
+    }
+
+    public int getLastId() {
+        updateCount();
+        return lastId;
+    }
+
+    public String getLastStudent() {
+        updateCount();
+        return lastStudent;
     }
 }
