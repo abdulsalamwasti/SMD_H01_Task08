@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "878959575661",
+    "firebase_url": "https://hometask08-b2779-default-rtdb.firebaseio.com",
+    "project_id": "hometask08-b2779",
+    "storage_bucket": "hometask08-b2779.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878959575661:android:8b564146f291af439ef564",
+        "android_client_info": {
+          "package_name": "com.example.smd_h01_task08"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878959575661-t17hb0jaba4d5dhuq9rs1gl8v114s38u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9DMdCTdwuc1JC0wuee8GOEGkhqhPkpko"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878959575661-t17hb0jaba4d5dhuq9rs1gl8v114s38u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
