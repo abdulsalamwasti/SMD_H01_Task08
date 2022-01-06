@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -20,17 +17,18 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class UpdateActivity extends AppCompatActivity {
+public class AllRecordsActivity extends AppCompatActivity {
 
     FirebaseDatabase database;
     DatabaseReference myRef;
     RecyclerViewAdapter adapter;
     RecyclerView recyclerView;
     ArrayList<Student> studentsList;
+    TextView textView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update2);
+        setContentView(R.layout.activity_all_records);
 
         database = FirebaseDatabase.getInstance("https://hometask08-b2779-default-rtdb.firebaseio.com/");
         myRef = database.getReference();
@@ -38,23 +36,13 @@ public class UpdateActivity extends AppCompatActivity {
 
         LoadData();
 
-        recyclerView = findViewById(R.id.update_recyclerView);
+        recyclerView = findViewById(R.id.alldata_recyclerView);
         adapter = new RecyclerViewAdapter(studentsList);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View itemView, int position) {
-                Student student = studentsList.get(position);
-                Intent intent = new Intent(getApplicationContext(), UpdateData.class);
-                intent.putExtra("updateItem", student);
-                startActivity(intent);
-                finish();
-                //Toast.makeText(getApplicationContext(), String.valueOf(position) + student.getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
+        textView = findViewById(R.id.alldata_h2);
 
     }
 
@@ -76,7 +64,7 @@ public class UpdateActivity extends AppCompatActivity {
                     studentsList.add(student);
                 }
                 adapter.notifyDataSetChanged();
-
+                textView.setText( String.valueOf(studentsList.size()) + " Records found");
                 if (studentsList.size() == 0)
                 {
                     Toast.makeText(getApplicationContext(), "No record found", Toast.LENGTH_SHORT).show();

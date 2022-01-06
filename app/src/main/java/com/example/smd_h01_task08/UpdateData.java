@@ -2,64 +2,62 @@ package com.example.smd_h01_task08;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+public class UpdateData extends AppCompatActivity {
 
-public class CreateRecordActivity extends AppCompatActivity {
-
-    int count;
     FirebaseLinks firebaseLinks;
     EditText nameTxt,cnicTxt,ageTxt,semesterTxt,cgpaTxt;
     Student student;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_record);
-        student = new Student();
+        setContentView(R.layout.activity_update_data);
         firebaseLinks = new FirebaseLinks();
 
-        nameTxt = findViewById(R.id.editTextTextPersonName2);
-        cnicTxt = findViewById(R.id.editTextTextPersonName3);
-        ageTxt = findViewById(R.id.editTextTextPersonName4);
-        semesterTxt = findViewById(R.id.editTextTextPersonName5);
-        cgpaTxt = findViewById(R.id.editTextTextPersonName6);
+        Intent intent = getIntent();
+        student = (Student) intent.getSerializableExtra("updateItem");
 
-        Toast.makeText(getApplicationContext(), String.valueOf(firebaseLinks.getLastId()), Toast.LENGTH_LONG).show();
+        nameTxt = findViewById(R.id.updatedata_PersonName2);
+        cnicTxt = findViewById(R.id.updatedata_PersonName3);
+        ageTxt = findViewById(R.id.updatedata_PersonName4);
+        semesterTxt = findViewById(R.id.updatedata_PersonName5);
+        cgpaTxt = findViewById(R.id.updatedata_PersonName6);
+
+
+        nameTxt.setText(student.getName());
+        cnicTxt.setText(student.getCnic());
+        ageTxt.setText(student.getAge());
+        semesterTxt.setText(student.getSemester());
+        cgpaTxt.setText(student.getGpa());
 
     }
 
+    public void updateRecord(View view) {
 
-    public void submitRecord(View view) {
-
-        count = firebaseLinks.getLastId() + 1;
-
-        student.setId(count);
         student.setName(nameTxt.getText().toString());
         student.setCnic(cnicTxt.getText().toString());
         student.setAge(ageTxt.getText().toString());
         student.setSemester(semesterTxt.getText().toString());
         student.setGpa(cgpaTxt.getText().toString());
-        student.setObjectName("student" + String.valueOf(student.getId()));
-
+        //student.setObjectName("student" + String.valueOf(student.getId()));
         if (student.getName().length() > 0 && student.getCnic().length() > 0 &&
                 student.getAge().length() > 0 && student.getSemester().length() > 0 &&
                 student.getGpa().length() > 0)
         {
-            Log.d("wasti", String.valueOf(count));
+            //Log.d("wasti", student.getObjectName());
             firebaseLinks.insertData(student);
-
             finish();
+
         }
         else
         {
             Toast.makeText(this, "Please fill complete form" + String.valueOf(firebaseLinks.getLastId()), Toast.LENGTH_SHORT).show();
         }
-
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchActivity"
-    android:background="@drawable/background_grdient">
+    android:background="#536976">
 
     <TextView
         android:id="@+id/search_h1"
@@ -21,7 +21,7 @@
         android:fontFamily="@font/poppins_bold"/>
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/editTextsearch2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -30,20 +30,35 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text=""
+        android:hint="Enter Student Name"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_h1"
-        android:textColor="@color/white"
-        android:textSize="18sp"/>
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_h1"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
-        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_h1"
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        android:onClick="searchRecord"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        app:layout_constraintHeight_max="490dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextsearch2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

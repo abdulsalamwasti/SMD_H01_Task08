@@ -4,43 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeleteActivity"
+    tools:context=".AllRecordsActivity"
     android:background="#536976">
 
     <TextView
-        android:id="@+id/delete_h1"
+        android:id="@+id/alldata_h1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="50dp"
-        android:text="Delete Record"
+        android:text="All Records"
         android:textSize="35sp"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_bold"/>
 
     <TextView
-        android:id="@+id/delete_h2"
+        android:id="@+id/alldata_h2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/delete_h1"
+        app:layout_constraintTop_toBottomOf="@id/alldata_h1"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
-        android:text="Selesct record to delete data"
+        android:text="0 Records found"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_medium"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/delete_recyclerView"
+        android:id="@+id/alldata_recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         app:layout_constraintHeight_max="530dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/delete_h2" />
+        app:layout_constraintTop_toBottomOf="@+id/alldata_h2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.example.smd_h01_task08;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable {
 
     String name;
     String cnic;

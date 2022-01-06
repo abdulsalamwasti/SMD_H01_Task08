@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.smd_h01_task08" >
+    package="com.example.smd_h01_task08">
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.SMD_H01_Task08" >
+        android:theme="@style/Theme.SMD_H01_Task08">
+        <activity
+            android:name=".AllRecordsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".UpdateData"
+            android:exported="true" />
         <activity
             android:name=".DeleteActivity"
             android:exported="true" />
@@ -23,7 +29,7 @@
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

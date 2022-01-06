@@ -4,6 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateActivity">
+    tools:context=".UpdateActivity"
+    android:background="#536976">
+
+    <TextView
+        android:id="@+id/update_h1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="50dp"
+        android:text="Update Record"
+        android:textSize="35sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_bold"/>
+
+    <TextView
+        android:id="@+id/update_h2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/update_h1"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="10dp"
+        android:text="Selesct record to update data"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_medium"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/update_recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintHeight_max="530dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/update_h2" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

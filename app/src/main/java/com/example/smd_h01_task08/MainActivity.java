@@ -1,31 +1,21 @@
 package com.example.smd_h01_task08;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 public class MainActivity extends AppCompatActivity {
 
-    Button createBtn,searchBtn,updateBtn,deleteBtn;
+    Button createBtn,searchBtn,updateBtn,deleteBtn,allrecBtn;
     TextView heading;
 
-    AssignId assignId = new AssignId();
-    int objectCount = assignId.getObjectCount();
+    FirebaseLinks firebaseLinks = new FirebaseLinks();
+    int objectCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         searchBtn = findViewById(R.id.button2);
         updateBtn = findViewById(R.id.button3);
         deleteBtn = findViewById(R.id.button4);
+        allrecBtn = findViewById(R.id.button5);
 
 
 
@@ -65,9 +56,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), DeleteActivity.class);
                 startActivity(intent);
-                //objectCount = assignId.getObjectCount();
-                //Toast.makeText(getApplicationContext(), String.valueOf(objectCount) + assignId.getLastStudent() + assignId.lastId, Toast.LENGTH_LONG).show();
+                //objectCount = firebaseLinks.getObjectCount();
+                //Toast.makeText(getApplicationContext(), String.valueOf(objectCount) + firebaseLinks.getLastStudent() + firebaseLinks.getLastId(), Toast.LENGTH_LONG).show();
 
+            }
+        });
+        allrecBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AllRecordsActivity.class);
+                startActivity(intent);
             }
         });
 
