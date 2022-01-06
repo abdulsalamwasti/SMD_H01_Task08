@@ -50,6 +50,8 @@ public class DeleteActivity extends AppCompatActivity {
                 Student student = studentsList.get(position);
                 firebaseLinks.deleteData(student);
                 adapter.notifyDataSetChanged();
+                recyclerView.invalidate();
+                adapter.notifyItemRemoved(position);
                 Toast.makeText(getApplicationContext(), "Record of " + student.getName() + "deleted sucessfully", Toast.LENGTH_SHORT).show();
             }
         });

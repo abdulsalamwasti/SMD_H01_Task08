@@ -41,8 +41,13 @@ public class FirebaseLinks {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 objectCount = (int) snapshot.getChildrenCount();
                 for (DataSnapshot snap: snapshot.getChildren()) {
-                    lastId = Integer.parseInt(String.valueOf(snap.child("id").getValue()));
-                    lastStudent = String.valueOf(snap.getKey());
+                    int nlastId = Integer.parseInt(String.valueOf(snap.child("id").getValue()));
+                    if (nlastId > lastId)
+                    {
+                        lastId = nlastId;
+                        lastStudent = String.valueOf(snap.getKey());
+                    }
+
                 }
             }
 

@@ -51,9 +51,8 @@ public class CreateRecordActivity extends AppCompatActivity {
                 student.getAge().length() > 0 && student.getSemester().length() > 0 &&
                 student.getGpa().length() > 0)
         {
-            Log.d("wasti", String.valueOf(count));
+            //Log.d("wasti", String.valueOf(count));
             firebaseLinks.insertData(student);
-
             finish();
         }
         else
